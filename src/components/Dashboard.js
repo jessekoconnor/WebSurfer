@@ -10,7 +10,7 @@ export default class FlexDimensionsBasics extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true
+            widgetsAreLoading: true
         }
     }
 
@@ -18,14 +18,13 @@ export default class FlexDimensionsBasics extends Component {
         return fetch('https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard)
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log('supsup1', responseJson);
+                // console.log('supsup1', responseJson);
                 let widgets = responseJson;
                 this.setState({
-                    isLoading: false,
+                    widgetsAreLoading: false,
                     widgets: widgets,
                     selectedWidget: widgets[0],
                     tileText: widgets.map((widget) => {
-                        console.log('widget.tileText', widget.tileText);
                         return widget.tileText;
                     })
                 });
@@ -43,12 +42,12 @@ export default class FlexDimensionsBasics extends Component {
                     <Title content={this.props.title}/>
                 </View>
                 <View style={styles.tiles}>
-                    <Tiles tileText={this.state.tileText} isLoading={this.state.isLoading} onPressHandler={(widgetIndex) => {
+                    <Tiles tileText={this.state.tileText} isLoading={this.state.widgetsAreLoading} onPressHandler={(widgetIndex) => {
                         this.setState(previousState => {return {selectedWidget: previousState.widgets[widgetIndex]};});
                     }}/>
                 </View>
                 <View style={styles.content}>
-                    <Content isLoading={this.state.isLoading} data={this.state.isLoading ? [] : this.state.selectedWidget.result} headers={this.state.isLoading ? [] : this.state.selectedWidget.headers} onNav={() => {
+                    <Content isLoading={this.state.widgetsAreLoading} data={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.result} headers={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.headers} onNav={() => {
                         console.log('Lets Nav Away');
                         // navigate('Details');
                     }}/>

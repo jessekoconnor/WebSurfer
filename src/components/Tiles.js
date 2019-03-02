@@ -20,7 +20,7 @@ class Tile extends Component {
 
 export default class Tiles extends Component {
     render() {
-        if (this.props.isLoading) {
+        if (this.props.widgetsAreLoading) {
             return (
                 <View style={styles.loader}>
                     <ActivityIndicator color="#0000ff" />

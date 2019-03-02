@@ -13,7 +13,7 @@ export default class Content extends Component {
     }
 
     render() {
-        if (this.props.isLoading) {
+        if (this.props.widgetsAreLoading) {
             return (
                 <View style={styles.loader}>
                     <ActivityIndicator size="large" color="#0000ff"/>
