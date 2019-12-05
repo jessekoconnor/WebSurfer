@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "dashMobile2",
-    "slug": "dashMobile2",
+    "name": "Dashmobile-12/19",
+    "slug": "dashmobile-1219",
     "privacy": "public",
-    "sdkVersion": "31.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
@@ -25,6 +25,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "Dashmobile as of Dec 2019"
   }
 }

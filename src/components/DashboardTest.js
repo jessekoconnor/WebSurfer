@@ -5,6 +5,8 @@ import Agenda from './Agenda';
 import CustomNavTest from './TabViewTest';
 import { Container } from 'native-base';
 
+import * as Font from 'expo-font';
+
 
 
 export default class FlexDimensionsBasics extends Component {
@@ -18,11 +20,11 @@ export default class FlexDimensionsBasics extends Component {
     }
 
     async componentWillMount() {
-        await Expo.Font.loadAsync({
-            Roboto: require("native-base/Fonts/Roboto.ttf"),
-            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-            Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
-        });
+        // await Expo.Font.loadAsync({
+        //     Roboto: font.Roboto,
+        //     Roboto_medium: font.Roboto_medium,
+        //     Ionicons: font.Ionicons,
+        // });
         this.setState({ fontLoading: false });
     }
 
