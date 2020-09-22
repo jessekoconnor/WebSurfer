@@ -1,3 +1,5 @@
+//TODO delete
+
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
@@ -9,14 +11,14 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 import Nightlife from '../src/dashboards/NightLife';
 import Lifestyle from '../src/dashboards/Lifestyle';
-import Agenda from '../src/dashboards/LifestyleTest';
+import Active from '../src/dashboards/Active';
 
 const HomeStack = createStackNavigator({
-  Home: Agenda,
+  Home: Active,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Agenda',
+  tabBarLabel: 'Active',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

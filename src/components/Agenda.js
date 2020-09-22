@@ -23,7 +23,7 @@ export default class AgendaScreen extends Component {
     }
 
     dataPrep() {
-        console.log('dataPrep', this.props.data);
+        // console.log('dataPrep', this.props.data);
         let preparedData = {};
 
         this.props.data.events.forEach((elem) => {
