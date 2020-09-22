@@ -11,7 +11,7 @@ const CreateView = (widget) => {
         <View style={{flex: 1}}>
             <Image
                 style={{flex:1, maxHeight: 180}}
-                source={{uri: widget.route.header.image}}
+                source={{uri: widget.route.header.imageFile}}
             />
             <Agenda style={{flex: 1}} data={widget.route}/>
         </View>
@@ -39,6 +39,11 @@ export default class TabViewExample extends React.Component {
                     let title = route.header.title,
                         subTitle = route.header.subTitle,
                         avatarUrl = route.header.avatar32x32url;
+
+                        console.log(`avatarUrl is ${avatarUrl}`);
+                        console.log(`title is ${title}`);
+                        console.log(`subTitle is ${subTitle}`);
+                        console.log(`route.header is`, route.header);
 
                     return (
                         <TouchableOpacity

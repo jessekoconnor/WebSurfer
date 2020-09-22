@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Alert, AppRegistry, View, Text, StyleSheet } from 'react-native';
+import { ActivityIndicator, Alert, View, Text, StyleSheet } from 'react-native';
 
 import Title from './Title';
 import Tiles from './Tiles';
 import Content from './Content';
 
 export default class FlexDimensionsBasics extends Component {
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -15,10 +16,17 @@ export default class FlexDimensionsBasics extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
+
+        if (__DEV__) {
+            console.log('Development');
+        } else {
+            console.log('Production');
+        }
+
         return fetch('https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard)
             .then((response) => response.json())
             .then((responseJson) => {
-                // console.log('supsup1', responseJson);
                 let widgets = responseJson;
                 this.setState({
                     widgetsAreLoading: false,
@@ -32,6 +40,10 @@ export default class FlexDimensionsBasics extends Component {
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {

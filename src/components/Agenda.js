@@ -23,10 +23,10 @@ export default class AgendaScreen extends Component {
     }
 
     dataPrep() {
-        // console.log('dataPrep', this.props.data);
+        console.log('dataPrep', this.props.data);
         let preparedData = {};
 
-        this.props.data.result.forEach((elem) => {
+        this.props.data.events.forEach((elem) => {
             let date = new Date(elem.rawDate),
                 ymd = this.timeToString(date.getTime());
 

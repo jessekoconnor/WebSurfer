@@ -10,6 +10,7 @@ import * as Font from 'expo-font';
 
 
 export default class FlexDimensionsBasics extends Component {
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -19,32 +20,47 @@ export default class FlexDimensionsBasics extends Component {
         }
     }
 
-    async componentWillMount() {
-        // await Expo.Font.loadAsync({
-        //     Roboto: font.Roboto,
-        //     Roboto_medium: font.Roboto_medium,
-        //     Ionicons: font.Ionicons,
-        // });
-        this.setState({ fontLoading: false });
-    }
-
     componentDidMount() {
-        return fetch('https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard)
+        this._isMounted = true;
+
+        let dashboardUrl = 'https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/';
+
+        console.log('Fetching dashboard...', 'https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard);
+
+        if (__DEV__) {
+            console.log('Development mode, pinging localhost');
+            dashboardUrl = 'http://localhost:3000/';
+        } else {
+            console.log('Production');
+        }
+
+        return fetch(dashboardUrl + this.props.dashboard)
             .then((response) => response.json())
             .then((responseJson) => {
-                let widgets = responseJson;
-                this.setState({
-                    widgetsAreLoading: false,
-                    widgets: widgets,
-                    selectedWidget: widgets[0],
-                    tileText: widgets.map((widget) => {
-                        return widget.tileText;
-                    })
-                });
+                
+                let widgets = responseJson.data;
+                
+                console.log('widgets', widgets);
+
+                if(this._isMounted) {
+                    this.setState({
+                        widgetsAreLoading: false,
+                        widgets: widgets,
+                        fontLoading: false,
+                        selectedWidget: widgets[0],
+                        tileText: widgets.map((widget) => {
+                            return widget.tileText;
+                        })
+                    });
+                }
             })
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default class Title extends Component {
     render() {
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',  // keep in bottom left
     },
     text: {
-        fontSize: 30
+        fontSize: 30,
+        color: '#ffffff',
     },
 });
