@@ -4,10 +4,13 @@ import { ActivityIndicator, SectionList, StyleSheet, Text, View } from 'react-na
 export default class Content extends Component {
 
     dataPrep() {
-        return this.props.data && this.props.headers ? this.props.data.map((point) => {
+        // console.log('Content data', this.props.data);
+        // console.log('Content headers', this.props.headers);
+
+        return this.props.data ? this.props.data.map((event) => {
             return {
-                title: point[this.props.headers[0]],
-                data: point[this.props.headers[1]],
+                title: event.title,
+                data: [event.humanDate + " @ " + event.startTime],
             };
         }) : [];
     }
@@ -21,6 +24,7 @@ export default class Content extends Component {
             );
         }
         let sections = this.dataPrep();
+        // console.log('Content sections', sections);
         return (
             <View style={styles.container}>
                 <SectionList

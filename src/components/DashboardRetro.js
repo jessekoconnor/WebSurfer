@@ -19,25 +19,31 @@ export default class FlexDimensionsBasics extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        let dashboardUrl = 'https://a50vr00y6l.execute-api.us-east-1.amazonaws.com/Prod/';
 
-        console.log("**** DashboardRetro *****");
+        // console.log("**** DashboardRetro *****");
 
         if (__DEV__) {
             console.log('Development');
+            // dashboardUrl = 'http://localhost:3000/';
         } else {
-            console.log('Production');
+            // console.log('Production');
         }
 
-        return fetch('https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard)
+        return fetch(dashboardUrl + this.props.dashboard)
             .then((response) => response.json())
             .then((responseJson) => {
-                let widgets = responseJson;
+                
+                let widgets = responseJson.data;
+
+                console.log('Widgets: ', widgets)
+                console.log('responseJson: ', responseJson)
                 this.setState({
                     widgetsAreLoading: false,
                     widgets: widgets,
                     selectedWidget: widgets[0],
                     tileText: widgets.map((widget) => {
-                        return widget.tileText;
+                        return widget.header.title;
                     })
                 });
             })
@@ -63,7 +69,7 @@ export default class FlexDimensionsBasics extends Component {
                     }}/>
                 </View>
                 <View style={styles.content}>
-                    <Content isLoading={this.state.widgetsAreLoading} data={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.result} headers={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.headers} onNav={() => {
+                    <Content isLoading={this.state.widgetsAreLoading} data={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.events} headers={this.state.widgetsAreLoading ? [] : this.state.selectedWidget.header} onNav={() => {
                         console.log('Lets Nav Away');
                         // navigate('Details');
                     }}/>

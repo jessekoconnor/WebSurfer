@@ -18,47 +18,73 @@ export default class FlexDimensionsBasics extends Component {
             widgetsAreLoading: true,
             fontLoading: true
         }
+
+        this.dash = false;
+        // this.fetchData();
     }
 
-    componentDidMount() {
-        this._isMounted = true;
+    async fetchData() {
+        if(this.dash) {
+            return Promise.resolve(this.dash);
+        }
 
-        let dashboardUrl = 'https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/';
+        let dashboardUrl = 'https://a50vr00y6l.execute-api.us-east-1.amazonaws.com/Prod/';
 
-        console.log("**** Dashboard *****");
-
-        console.log('Fetching dashboard...', 'https://0uom921bke.execute-api.us-east-1.amazonaws.com/Prod/dashboard/' + this.props.dashboard);
+        // console.log("**** Dashboard *****");
 
         if (__DEV__) {
             console.log('Development mode, pinging localhost');
-            dashboardUrl = 'http://localhost:3000/';
+            // dashboardUrl = 'http://localhost:3000/';
         } else {
-            console.log('Production');
+            // console.log('Production');
         }
 
-        return fetch(dashboardUrl + this.props.dashboard)
+        // Fetch the data as soon as possible
+        return new Promise((res,rej) => {
+            fetch(dashboardUrl + this.props.dashboard)
             .then((response) => response.json())
-            .then((responseJson) => {
-                
-                let widgets = responseJson.data;
-                
-                console.log('widgets', widgets);
-
-                if(this._isMounted) {
-                    this.setState({
-                        widgetsAreLoading: false,
-                        widgets: widgets,
-                        fontLoading: false,
-                        selectedWidget: widgets[0],
-                        tileText: widgets.map((widget) => {
-                            return widget.tileText;
-                        })
-                    });
-                }
+            .then(data => {
+                this.dash = data;
+                res(data);
             })
             .catch((error) => {
-                console.error(error);
+                console.log("Error, trying once more", error);
+                // Try one more time
+                fetch(dashboardUrl + this.props.dashboard)
+                .then((response) => response.json())
+                .then(data => {
+                    this.dash = data;
+                    res(data);
+                }).catch((error) => {
+                    console.error(error);
+                    rej(error)
+                });
             });
+        })
+    }
+
+    async componentDidMount() {
+        this._isMounted = true;
+        
+        let dashboard = await this.fetchData();
+
+        console.log('DASHBOARS*********    ', dashboard)
+
+        let widgets = dashboard.data;
+        
+        console.log('widgets', widgets);
+
+        if(this._isMounted) {
+            this.setState({
+                widgetsAreLoading: false,
+                widgets: widgets,
+                fontLoading: false,
+                selectedWidget: widgets[0],
+                tileText: widgets.map((widget) => {
+                    return widget.tileText;
+                })
+            });
+        }
     }
 
     componentWillUnmount() {
