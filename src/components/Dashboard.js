@@ -28,7 +28,7 @@ export default class FlexDimensionsBasics extends Component {
             return Promise.resolve(this.dash);
         }
 
-        let dashboardUrl = 'https://a50vr00y6l.execute-api.us-east-1.amazonaws.com/Prod/';
+        let dashboardUrl = 'https://1vu5pa0yq2.execute-api.us-east-1.amazonaws.com/Prod';
 
         // console.log("**** Dashboard *****");
 
