@@ -7,7 +7,7 @@ import { Container } from 'native-base';
 
 import * as Font from 'expo-font';
 
-
+import { DASHBOARD_API_BASE_URL, LOCAL_BACKEND } from '../../.env.js';
 
 export default class FlexDimensionsBasics extends Component {
     _isMounted = false;
@@ -28,22 +28,17 @@ export default class FlexDimensionsBasics extends Component {
             return Promise.resolve(this.dash);
         }
 
-        let dashboardUrl = 'https://cqrwy3vn9e.execute-api.us-east-1.amazonaws.com/Prod';
+        let dashboardUrl = DASHBOARD_API_BASE_URL;
+        // let dashboardUrl = process.env.JESSE_TEST;
 
-        // console.log("**** Dashboard *****");
-
-        if (__DEV__) {
-            console.log('Development mode, pinging localhost');
-            dashboardUrl = 'http://localhost:3000/';
-        } else {
-            // console.log('Production');
-        }
+        console.log("**** Dashboard *****", { dashboardUrl });
 
         // Fetch the data as soon as possible
         return new Promise((res,rej) => {
             fetch(dashboardUrl + this.props.dashboard)
             .then((response) => response.json())
             .then(data => {
+                // console.log('got dashvboard data', data)
                 this.dash = data;
                 res(data);
             })
@@ -68,11 +63,11 @@ export default class FlexDimensionsBasics extends Component {
         
         let dashboard = await this.fetchData();
 
-        console.log('DASHBOARS*********    ', dashboard)
+        // console.log('DASHBOARS*********    ', dashboard)
 
         let widgets = dashboard.data;
         
-        console.log('widgets', widgets);
+        // console.log('widgets', widgets);
 
         if(this._isMounted) {
             this.setState({

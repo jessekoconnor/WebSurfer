@@ -25,11 +25,12 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.jessekoconnor.dashmobile2023"
     },
-    "description": "Dashmobile 2021",
+    "description": "Dashmobile 2023",
     "extra": {
       "eas": {
         "projectId": "f03043f7-53f8-4fad-937f-5cfbfa72d2c3"
-      }
+      },
+      "JESSE_TEST": true
     },
     "owner": "jessekoconnor",
     "android": {

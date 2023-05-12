@@ -23,7 +23,7 @@ export default class AgendaScreen extends Component {
     }
 
     dataPrep() {
-        console.log('dataPrep1', this.props.data);
+        // console.log('dataPrep1', this.props.data);
         let preparedData = {};
 
         this.props.data.events.forEach((elem) => {
@@ -138,7 +138,7 @@ export default class AgendaScreen extends Component {
     }
 
     renderItem(item) {
-        console.log('renderItem', item)
+        // console.log('renderItem', item)
         let title = item.title || item.name,
             time = item.humanReadable?.start;
 

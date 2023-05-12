@@ -7,6 +7,8 @@ import Title from './Title';
 import Tiles from './Tiles';
 import Content from './Content';
 
+import { DASHBOARD_API_BASE_URL } from '../../.env.js';
+
 export default class FlexDimensionsBasics extends Component {
     _isMounted = false;
 
@@ -19,16 +21,9 @@ export default class FlexDimensionsBasics extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        let dashboardUrl = 'https://cqrwy3vn9e.execute-api.us-east-1.amazonaws.com/Prod/';
+        let dashboardUrl = DASHBOARD_API_BASE_URL;
 
         // console.log("**** DashboardRetro *****");
-
-        if (__DEV__) {
-            console.log('Development');
-            dashboardUrl = 'http://localhost:3000/';
-        } else {
-            // console.log('Production');
-        }
 
         console.log('url', dashboardUrl + this.props.dashboard)
 
