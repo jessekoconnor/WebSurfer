@@ -23,11 +23,11 @@ export default class AgendaScreen extends Component {
     }
 
     dataPrep() {
-        // console.log('dataPrep', this.props.data);
+        console.log('dataPrep1', this.props.data);
         let preparedData = {};
 
         this.props.data.events.forEach((elem) => {
-            let date = new Date(elem.rawDate),
+            let date = new Date(elem.startDate),
                 ymd = this.timeToString(date.getTime());
 
             if(!preparedData[ymd]) {
@@ -138,11 +138,11 @@ export default class AgendaScreen extends Component {
     }
 
     renderItem(item) {
-        // console.log('renderItem', item)
+        console.log('renderItem', item)
         let title = item.title || item.name,
-            time = item.startTime;
+            time = item.humanReadable?.start;
 
-        if(item.endTime) {
+        if(item.humanReadable?.endTime) {
             time += ' - ' + item.endTime;
         }
         return (

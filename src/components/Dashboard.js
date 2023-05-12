@@ -28,13 +28,13 @@ export default class FlexDimensionsBasics extends Component {
             return Promise.resolve(this.dash);
         }
 
-        let dashboardUrl = 'https://1vu5pa0yq2.execute-api.us-east-1.amazonaws.com/Prod';
+        let dashboardUrl = 'https://cqrwy3vn9e.execute-api.us-east-1.amazonaws.com/Prod';
 
         // console.log("**** Dashboard *****");
 
         if (__DEV__) {
             console.log('Development mode, pinging localhost');
-            // dashboardUrl = 'http://localhost:3000/';
+            dashboardUrl = 'http://localhost:3000/';
         } else {
             // console.log('Production');
         }

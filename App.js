@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Icon  from '@expo/vector-icons';
@@ -12,7 +12,9 @@ export default class App extends React.Component {
   };
 
   render() {
+    console.log('renderCalled');
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+      console.log('renderCalled - loading');
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
@@ -21,6 +23,7 @@ export default class App extends React.Component {
         />
       );
     } else {
+      console.log('renderCalled - loaded');
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}

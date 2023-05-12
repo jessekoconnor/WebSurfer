@@ -4,13 +4,13 @@ import { ActivityIndicator, SectionList, StyleSheet, Text, View } from 'react-na
 export default class Content extends Component {
 
     dataPrep() {
-        // console.log('Content data', this.props.data);
+        console.log('Content data', this.props.data);
         // console.log('Content headers', this.props.headers);
 
         return this.props.data ? this.props.data.map((event) => {
             return {
                 title: event.title,
-                data: [event.humanDate + " @ " + event.startTime],
+                data: [event.humanReadable.start],
             };
         }) : [];
     }

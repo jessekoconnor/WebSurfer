@@ -19,16 +19,18 @@ export default class FlexDimensionsBasics extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        let dashboardUrl = 'https://a50vr00y6l.execute-api.us-east-1.amazonaws.com/Prod/';
+        let dashboardUrl = 'https://cqrwy3vn9e.execute-api.us-east-1.amazonaws.com/Prod/';
 
         // console.log("**** DashboardRetro *****");
 
         if (__DEV__) {
             console.log('Development');
-            // dashboardUrl = 'http://localhost:3000/';
+            dashboardUrl = 'http://localhost:3000/';
         } else {
             // console.log('Production');
         }
+
+        console.log('url', dashboardUrl + this.props.dashboard)
 
         return fetch(dashboardUrl + this.props.dashboard)
             .then((response) => response.json())

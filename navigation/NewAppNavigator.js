@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Active" component={Active} />
+        {/* <Tab.Screen name="Active" component={Active} /> */}
         <Tab.Screen name="Nightlife" component={Nightlife} />
         <Tab.Screen name="Retro" component={Retro} />
       </Tab.Navigator>

@@ -5,7 +5,7 @@ import Dashboard from '../components/DashboardRetro';
 export default class NightLife extends React.Component {
     render() {
         return(
-            <Dashboard dashboard="nightlife" title="Lifestyle"/>
+            <Dashboard dashboard="nightLife" title="Lifestyle"/>
         );
     }
 }
