@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Dashmobile-12/19",
-    "slug": "dashmobile-2023",
+    "slug": "dash-mobile",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -29,7 +29,7 @@
     "description": "Dashmobile 2023",
     "extra": {
       "eas": {
-        "projectId": "f03043f7-53f8-4fad-937f-5cfbfa72d2c3"
+        "projectId": "22029c86-f18b-49ab-b6af-e76fed543dd3"
       },
       "JESSE_TEST": true
     },
