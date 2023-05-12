@@ -7,7 +7,7 @@ import Title from './Title';
 import Tiles from './Tiles';
 import Content from './Content';
 
-import { DASHBOARD_API_BASE_URL } from '../../.env.js';
+import { DASHBOARD_API_BASE_URL } from '../../env.js';
 
 export default class FlexDimensionsBasics extends Component {
     _isMounted = false;

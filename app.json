@@ -16,7 +16,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/f03043f7-53f8-4fad-937f-5cfbfa72d2c3"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -35,6 +36,9 @@
     "owner": "jessekoconnor",
     "android": {
       "package": "com.jessekoconnor.dashmobile2023"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

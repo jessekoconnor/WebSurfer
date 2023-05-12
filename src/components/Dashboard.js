@@ -7,7 +7,7 @@ import { Container } from 'native-base';
 
 import * as Font from 'expo-font';
 
-import { DASHBOARD_API_BASE_URL, LOCAL_BACKEND } from '../../.env.js';
+import { DASHBOARD_API_BASE_URL } from '../../env.js';
 
 export default class FlexDimensionsBasics extends Component {
     _isMounted = false;
