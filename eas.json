@@ -5,7 +5,8 @@
   },
   "build": {
     "production": {
-      "node": "16.20.0"
+      "node": "16.20.0",
+      "channel": "default"
     },
     "development": {
       "extends": "production",
