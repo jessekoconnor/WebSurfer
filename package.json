@@ -5,7 +5,8 @@
     "ios": "expo run:ios",
     "ios-local": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "release:ios:jesse": "eas build -p ios --profile preview --non-interactive"
   },
   "jest": {
     "preset": "jest-expo"
