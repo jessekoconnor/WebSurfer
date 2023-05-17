@@ -6,7 +6,10 @@
   "build": {
     "production": {
       "node": "16.20.0",
-      "channel": "default"
+      "channel": "default",
+      "env": {
+        "APP_ENV": "production"
+      }
     },
     "development": {
       "extends": "production",
@@ -16,9 +19,19 @@
     "preview": {
       "extends": "production",
       "distribution": "internal"
+    },
+    "testflight": {
+      "extends": "production",
+      "distribution": "store"
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "jessekoconnor@gmail.com",
+        "ascAppId": "6449200142",
+        "appleTeamId": "594PP6RQJ7"
+      }
+    }
   }
 }

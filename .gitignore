@@ -10,4 +10,5 @@ package-lock.json
 .DS_Store
 yarn.lock
 ios
+android
 dist

@@ -3,10 +3,13 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "rebuild": "npx expo prebuild --clean",
     "ios-local": "expo start --ios",
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
-    "release:ios:jesse": "eas build -p ios --profile preview --non-interactive"
+    "build:ios:jesse": "eas build -p ios --profile preview --non-interactive",
+    "build:ios:prod": "eas build -p ios --profile production --auto-submit --non-interactive",
+    "submit": "eas submit -p ios --latest"
   },
   "jest": {
     "preset": "jest-expo"
@@ -49,5 +52,5 @@
   },
   "private": true,
   "name": "WebSurfer",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

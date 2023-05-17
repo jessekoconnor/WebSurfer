@@ -164,8 +164,13 @@ export default class AgendaScreen extends Component {
     }
 
     timeToString(time) {
-        const date = new Date(time);
-        return date.toISOString().split('T')[0];
+        try {
+            const date = new Date(time);
+            return date.toISOString().split('T')[0];
+        } catch(e) {
+            console.error('timeToString error', { e, time });
+            return ''
+        }
     }
 }
 

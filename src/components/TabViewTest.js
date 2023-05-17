@@ -2,8 +2,25 @@ import * as React from 'react';
 import {View, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 
-import TileTest from './TitleTest';
+import SubTile from './SubTile';
 import Agenda from "./Agenda";
+
+const styles = {
+    tabBarItem: {
+        notSelected: {
+            flex: 1,
+            alignItems: 'center',
+            margin: 2,
+        },
+        selected: {
+            flex: 1,
+            alignItems: 'center',
+            backgroundColor: 'powderblue',
+            // 1px of padding on left and right
+            margin: 2,
+        }
+    },
+}
 
 const CreateView = (widget) => {
     // console.log('createView', widget.route.result.length);
@@ -38,22 +55,21 @@ export default class TabViewExample extends React.Component {
 
                     let title = route.header.title,
                         subTitle = route.header.subTitle,
-                        avatarUrl = route.header.avatar32x32url;
+                        avatarUrl = route.header.avatar32x32url
+                        isSelected = this.state.index === i;
 
                         console.log(`avatarUrl is ${avatarUrl}`);
                         console.log(`title is ${title}`);
                         console.log(`subTitle is ${subTitle}`);
                         console.log(`route.header is`, route.header);
+                        console.log('isSelected is', isSelected);
 
                     return (
                         <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                alignItems: 'center',
-                            }}
+                            style={isSelected ? styles.tabBarItem.selected : styles.tabBarItem.notSelected}
                             onPress={() => this.setState({ index: i })}
                             key={i} >
-                            <TileTest title={title} subTitle={subTitle} avatarUrl={avatarUrl}/>
+                            <SubTile title={title} subTitle={subTitle} avatarUrl={avatarUrl}/>
                         </TouchableOpacity>
                     );
                 })}

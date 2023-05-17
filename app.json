@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Dashmobile-2023",
+    "name": "DashHero: mobile",
     "slug": "dash-mobile",
     "privacy": "public",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
@@ -24,7 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.jessekoconnor.dashmobile2023"
+      "bundleIdentifier": "com.jessekoconnor.dashmobile2023",
+      "buildNumber": "2"
     },
     "description": "Dashmobile 2023",
     "extra": {

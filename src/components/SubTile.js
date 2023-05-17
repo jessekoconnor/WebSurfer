@@ -10,11 +10,13 @@ takes: {
     subtitle: subTitle text
 }
  */
-export default class TileTest extends Component {
+export default class SubTile extends Component {
     render() {
         const uri = this.props.avatarUrl,
             title = this.props.title,
             subTitle = this.props.subTitle;
+
+            console.log(this.props)
         return (
             <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                 <Thumbnail style={{height: 32, width: 32}} source={{uri:uri}} />
