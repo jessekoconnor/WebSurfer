@@ -9,6 +9,15 @@ import * as Font from 'expo-font';
 
 import { DASHBOARD_API_BASE_URL } from '../../env.js';
 
+// function which delays X seconds
+const delay = (seconds) => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res();
+        }, seconds * 1000);
+    });
+}
+
 export default class FlexDimensionsBasics extends Component {
     _isMounted = false;
 
@@ -23,39 +32,30 @@ export default class FlexDimensionsBasics extends Component {
         // this.fetchData();
     }
 
-    async fetchData() {
+    async fetchData({ attempt = 1, lastError } = {}) {
+        let dashboardUrl = DASHBOARD_API_BASE_URL;
+        if (attempt > 3) {
+            return new Error("Could not fetch data", { dashboardUrl, lastError });
+        }
+
         if(this.dash) {
             return Promise.resolve(this.dash);
         }
 
-        let dashboardUrl = DASHBOARD_API_BASE_URL;
-        // let dashboardUrl = process.env.JESSE_TEST;
-
         console.log("**** Dashboard *****", { dashboardUrl });
 
-        // Fetch the data as soon as possible
-        return new Promise((res,rej) => {
-            fetch(dashboardUrl + this.props.dashboard)
-            .then((response) => response.json())
-            .then(data => {
-                // console.log('got dashvboard data', data)
-                this.dash = data;
-                res(data);
-            })
-            .catch((error) => {
-                console.log("Error, trying once more", error);
-                // Try one more time
-                fetch(dashboardUrl + this.props.dashboard)
-                .then((response) => response.json())
-                .then(data => {
-                    this.dash = data;
-                    res(data);
-                }).catch((error) => {
-                    console.error(error);
-                    rej(error)
-                });
-            });
-        })
+        try {
+            const res = await fetch(dashboardUrl + this.props.dashboard);
+            const resJson = await res.json();
+            this.dash = resJson;
+            return resJson;
+        } catch (error) {
+            console.log("Error fetching dashboard, trying once more", { error, dashboardUrl });
+            // Try another more time after 3 seconds
+            await delay(3 * attempt);
+            this.dash = await this.fetchData({ attempt: attempt + 1, lastError: error });
+            return this.dash;
+        }
     }
 
     async componentDidMount() {

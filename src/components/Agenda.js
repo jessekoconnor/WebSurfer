@@ -28,7 +28,7 @@ export default class AgendaScreen extends Component {
 
         this.props.data.events.forEach((elem) => {
             let date = new Date(elem.startDate),
-                ymd = this.timeToString(date.getTime());
+                ymd = this.timeToString(date.getTime(), { elem });
 
             if(!preparedData[ymd]) {
                 preparedData[ymd] = []
@@ -110,7 +110,7 @@ export default class AgendaScreen extends Component {
         for (let i = 0; i < 30; i++) {
             // console.log('day.timestamp', day, day.timestamp);
             const time = day.timestamp + (i) * 24 * 60 * 60 * 1000;
-            const strTime = this.timeToString(time);
+            const strTime = this.timeToString(time, { events, day });
             // console.log('loading items2', strTime, this.state.items[strTime]?this.state.items[strTime].length:this.state.items[strTime]);
             if (!this.state.items[strTime]) {
                 // console.log('loading items3', events[strTime] ? events[strTime].length: events[strTime]);
@@ -163,12 +163,12 @@ export default class AgendaScreen extends Component {
         return r1.name !== r2.name;
     }
 
-    timeToString(time) {
+    timeToString(time, context) {
         try {
             const date = new Date(time);
             return date.toISOString().split('T')[0];
         } catch(e) {
-            console.error('timeToString error', { e, time });
+            console.error('timeToString error', { e, time, context });
             return ''
         }
     }
