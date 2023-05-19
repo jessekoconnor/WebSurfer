@@ -2,8 +2,8 @@
 Displays a summary of local portsmouth business calendars in a mobile format. Implemented with react-native. 
 
 ![Sample1](assets/images/WebSurfer-snapshot.png)
-![Sample2](assets/images/WebSurfer-snapshot2.png)
-![Sample3](assets/images/WebSurfer-snapshot3.png)
+![Sample2](assets/images/WebSurfer-snapshot-2.png)
+![Sample3](assets/images/WebSurfer-snapshot-3.png)
 
 
 # Details
